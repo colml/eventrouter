@@ -4,7 +4,7 @@
 "kafkaBrokers": "kafka:9092",
 "kafkaTopic": "topic",
 "kafkaSaslUser": "user",
-"kafkaSaslPwd": "password"
+"kafkaSaslPwd": "password",
 "httpSinkUrl": "http://localhost:8080",
 "httpSinkBufferSize": 1500,
 "httpSinkDiscardMessages": true,
@@ -19,5 +19,9 @@
 "s3SinkBufferSize": 1500,
 "s3SinkDiscardMessages": true,
 "s3SinkOutputFormat": "flatjson",
-"s3SinkUploadInterval": 120
+"s3SinkUploadInterval": 120,
+"elasticURL": "http://elastic:9200",
+"elasticUser": "",
+"elasticPass": "",
+"elasticTag": "k8s-cluster"
 }

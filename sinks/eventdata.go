@@ -22,9 +22,9 @@ import (
 	"io"
 
 	"github.com/crewjam/rfc5424"
-	"github.com/json-iterator/go"
+	jsoniter "github.com/json-iterator/go"
 	"github.com/json-iterator/go/extra"
-	"k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
 
 	"github.com/nytlabs/gojsonexplode"
 )
@@ -35,6 +35,7 @@ type EventData struct {
 	Verb     string    `json:"verb"`
 	Event    *v1.Event `json:"event"`
 	OldEvent *v1.Event `json:"old_event,omitempty"`
+	Tag      string    `json:"tag,omitempty"`
 }
 
 // NewEventData constructs an EventData struct from an old and new event,
@@ -54,6 +55,13 @@ func NewEventData(eNew *v1.Event, eOld *v1.Event) EventData {
 		}
 	}
 
+	return eData
+}
+
+// NewTaggedEventData constructs an EventData struct with a tag
+func NewTaggedEventData(eNew *v1.Event, eOld *v1.Event, tag string) EventData {
+	eData := NewEventData(eNew, eOld)
+	eData.Tag = tag
 	return eData
 }
 

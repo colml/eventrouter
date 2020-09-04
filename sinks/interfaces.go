@@ -41,6 +41,22 @@ func ManufactureSink() (e EventSinkInterface) {
 		viper.SetDefault("stdoutJSONNamespace", "")
 		stdoutNamespace := viper.GetString("stdoutJSONNamespace")
 		e = NewStdoutSink(stdoutNamespace)
+	case "elastic":
+		viper.SetDefault("elasticUser", "")
+		viper.SetDefault("elasticPass", "")
+		viper.SetDefault("elasticTag", "k8s-cluster")
+		viper.SetDefault("elasticBufSize", 1500)
+		viper.SetDefault("elasticDiscard", true)
+		url := viper.GetString("elasticURL")
+		user := viper.GetString("elasticUser")
+		pass := viper.GetString("elasticPass")
+		tag := viper.GetString("elasticTag")
+		bufSize := viper.GetInt("elasticBufSize")
+		discard := viper.GetBool("elasticDiscard")
+
+		es := NewElasticSink(url, user, pass, tag, bufSize, discard)
+		go es.Run(make(chan bool))
+		return es
 	case "http":
 		url := viper.GetString("httpSinkUrl")
 		if url == "" {

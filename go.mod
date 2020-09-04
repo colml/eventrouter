@@ -8,6 +8,8 @@ require (
 	github.com/aws/aws-sdk-go v1.23.2
 	github.com/crewjam/rfc5424 v0.0.0-20180723152949-c25bdd3a0ba2
 	github.com/eapache/channels v1.1.0
+	github.com/elastic/go-elasticsearch/v6 v6.8.10
+	github.com/go-co-op/gocron v0.3.0
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/imdario/mergo v0.3.7 // indirect
 	github.com/influxdata/influxdb v1.7.7
